@@ -15,8 +15,6 @@ public class Cart {
     @Column(name = "cart_id")
     private int cart_id;
     @Column
-    private int quantity;
-    @Column
     private  double total;
     @OneToOne
     @JoinColumn(name = "user_id")
@@ -25,9 +23,8 @@ public class Cart {
     @JoinColumn(name= "product_id")
     private Product product;
 
-    public Cart(int cart_id, int quantity, double total, User user, Product product) {
+    public Cart(int cart_id, double total, User user, Product product) {
         this.cart_id = cart_id;
-        this.quantity = quantity;
         this.total = total;
         this.user = user;
         this.product = product;
@@ -39,14 +36,6 @@ public class Cart {
 
     public void setCart_id(int cart_id) {
         this.cart_id = cart_id;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public double getTotal() {
@@ -78,19 +67,18 @@ public class Cart {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Cart cart = (Cart) o;
-        return getCart_id() == cart.getCart_id() && getQuantity() == cart.getQuantity() && Double.compare(getTotal(), cart.getTotal()) == 0 && Objects.equals(getUser(), cart.getUser()) && Objects.equals(getProduct(), cart.getProduct());
+        return getCart_id() == cart.getCart_id()  && Double.compare(getTotal(), cart.getTotal()) == 0 && Objects.equals(getUser(), cart.getUser()) && Objects.equals(getProduct(), cart.getProduct());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCart_id(), getQuantity(), getTotal(), getUser(), getProduct());
+        return Objects.hash(getCart_id(),  getTotal(), getUser(), getProduct());
     }
 
     @Override
     public String toString() {
         return "Cart{" +
                 "cart_id=" + cart_id +
-                ", quantity=" + quantity +
                 ", total=" + total +
                 ", user=" + user +
                 ", product=" + product +
