@@ -30,7 +30,7 @@ create table product(
 	product_id SERIAL,
 	title varchar(50) NOT NULL,
 	description varchar(20),
-	price money,
+	price decimal(10,2),
 	category_id int,
 	time_created timestamp,
 	PRIMARY KEY(product_id),
@@ -42,7 +42,7 @@ create table product(
 create table cart(
 	cart_id SERIAL,
 	quantity int,
-	total money,
+	total decimal(10,2),
 	product_id int,
 	user_id int,
 	PRIMARY KEY(cart_id),
@@ -56,7 +56,7 @@ create table cart(
 
 create table ecommerce.order(
 	order_id SERIAL,
-	total money,
+	total decimal(10,2),
 	user_id int,
 	cart_id int,
 	PRIMARY KEY(order_id),
