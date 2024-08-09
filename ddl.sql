@@ -1,8 +1,9 @@
 SET SEARCH_PATH TO ecommerce;
-DROP TABLE IF EXISTS ecommerce.user;
-DROP TABLE IF EXISTS category;
-DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS ecommerce.order;
+DROP TABLE IF EXISTS cart;
+DROP TABLE IF EXISTS product;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS ecommerce.user;
 
 create table ecommerce.user(
 	user_id SERIAL,
@@ -38,16 +39,31 @@ create table product(
 		REFERENCES category(category_id)
 );
 
-create table ecommerce.order(
-	order_id SERIAL,
+create table cart(
+	cart_id SERIAL,
+	quantity int,
 	total money,
-	user_id int,
 	product_id int,
-	PRIMARY KEY(order_id),
+	user_id int,
+	PRIMARY KEY(cart_id),
 	CONSTRAINT fk_user
 		FOREIGN KEY(user_id)
 		REFERENCES ecommerce.user(user_id),
 	CONSTRAINT fk_product
 		FOREIGN KEY(product_id)
 		REFERENCES product(product_id)
+);
+
+create table ecommerce.order(
+	order_id SERIAL,
+	total money,
+	user_id int,
+	cart_id int,
+	PRIMARY KEY(order_id),
+	CONSTRAINT fk_user
+		FOREIGN KEY(user_id)
+		REFERENCES ecommerce.user(user_id),
+	CONSTRAINT fk_cart
+		FOREIGN KEY(cart_id)
+		REFERENCES cart(cart_id)
 );
