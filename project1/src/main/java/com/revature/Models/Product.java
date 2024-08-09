@@ -16,11 +16,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
     private int product_id;
-    @Column
+    @Column(nullable = false)
     private String title;
     @Column
     private String description;
-    @Column
+    @Column(nullable = false)
     private BigDecimal money;
     @OneToMany
     @JoinColumn(name = "category_id")

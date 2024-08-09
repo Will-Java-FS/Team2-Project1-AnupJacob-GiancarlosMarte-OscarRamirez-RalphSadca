@@ -30,7 +30,7 @@ create table product(
 	product_id SERIAL,
 	title varchar(50) NOT NULL,
 	description varchar(20),
-	price decimal(10,2),
+	price decimal(10,2) NOT NULL,
 	category_id int,
 	time_created timestamp,
 	PRIMARY KEY(product_id),
