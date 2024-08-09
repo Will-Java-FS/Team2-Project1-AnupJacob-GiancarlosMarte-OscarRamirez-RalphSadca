@@ -21,7 +21,7 @@ public class Product {
     @Column
     private String description;
     @Column(nullable = false)
-    private BigDecimal money;
+    private BigDecimal price;
     @OneToMany
     @JoinColumn(name = "category_id")
     private Category category;
@@ -31,11 +31,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(int product_id, String title, String description, BigDecimal money, Category category, LocalDateTime time_created) {
+    public Product(int product_id, String title, String description, BigDecimal price, Category category,
+                   LocalDateTime time_created) {
         this.product_id = product_id;
         this.title = title;
         this.description = description;
-        this.money = money;
+        this.price = price;
         this.category = category;
         this.time_created = time_created;
     }
@@ -52,8 +53,8 @@ public class Product {
         this.description = description;
     }
 
-    public void setMoney(BigDecimal money) {
-        this.money = money;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
     public void setCategory(Category category) {
@@ -69,12 +70,18 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return getProduct_id() == product.getProduct_id() && Objects.equals(getTitle(), product.getTitle()) && Objects.equals(getDescription(), product.getDescription()) && Objects.equals(getMoney(), product.getMoney()) && Objects.equals(getCategory(), product.getCategory()) && Objects.equals(getTime_created(), product.getTime_created());
+        return getProduct_id() == product.getProduct_id()
+                && Objects.equals(getTitle(), product.getTitle())
+                && Objects.equals(getDescription(), product.getDescription())
+                && Objects.equals(getPrice(), product.getPrice())
+                && Objects.equals(getCategory(), product.getCategory())
+                && Objects.equals(getTime_created(), product.getTime_created());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProduct_id(), getTitle(), getDescription(), getMoney(), getCategory(), getTime_created());
+        return Objects.hash(getProduct_id(), getTitle(), getDescription(), getPrice(), getCategory(),
+                getTime_created());
     }
 
     @Override
@@ -83,7 +90,7 @@ public class Product {
                 "product_id=" + product_id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", money=" + money +
+                ", price=" + price +
                 ", category=" + category +
                 ", time_created=" + time_created +
                 '}';
