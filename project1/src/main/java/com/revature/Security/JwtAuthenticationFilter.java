@@ -8,17 +8,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 import java.io.IOException;
 
-public class JwtRequestFilter extends BasicAuthenticationFilter {
+public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
 
     private final JwtConverter converter;
 
-    public JwtRequestFilter(AuthenticationManager authenticationManager, JwtConverter converter) {
+    public JwtAuthenticationFilter(AuthenticationManager authenticationManager, JwtConverter converter) {
         // 1. Must satisfy the super class.
         super(authenticationManager);
         this.converter = converter;

@@ -1,6 +1,6 @@
 package com.revature.Security;
 
-public class SecurityConfig {
+public class ApplicationConfig {
 
     // @TODO: Using to map a SecurityFilterChain
     // takes HttpSecurity and AuthenticationConfiguration
