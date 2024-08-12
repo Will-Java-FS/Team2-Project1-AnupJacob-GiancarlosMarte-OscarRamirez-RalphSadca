@@ -1,9 +1,23 @@
 package com.revature.Security;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import com.revature.Repositories.UserRepo;
+
+@Configuration
+@RequiredArgsConstructor
 public class ApplicationConfig {
 
-    // @TODO: Using to map a SecurityFilterChain
-    // takes HttpSecurity and AuthenticationConfiguration
-    // Will use to decide which users are permitted to create which requests
-    // EX: Admins can POST/PUT categories, but Users cannot
+    private final UserRepo userRepo;
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return username -> userRepo.findByEmail(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+    }
+
 }
