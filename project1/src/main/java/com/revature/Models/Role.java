@@ -1,4 +1,4 @@
-package com.revature.Models.Auth;
+package com.revature.Models;
 
 public enum Role {
 

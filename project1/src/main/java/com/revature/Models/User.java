@@ -1,6 +1,5 @@
 package com.revature.Models;
 
-import com.revature.Models.Auth.Role;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -32,6 +31,8 @@ public class User implements UserDetails {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
+    @Column(length = 11)
+    private String address;
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime created_at = LocalDateTime.now();
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
