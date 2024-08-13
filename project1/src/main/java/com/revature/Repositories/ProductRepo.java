@@ -13,6 +13,7 @@ import java.util.List;
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Integer> {
     public List<Product> findProductsByCategory(String category);
+    public List<Product> findProductsByCategoryId(int category_id);
 
     /*
     Stretch Goal: Functions for searching product by name and price
