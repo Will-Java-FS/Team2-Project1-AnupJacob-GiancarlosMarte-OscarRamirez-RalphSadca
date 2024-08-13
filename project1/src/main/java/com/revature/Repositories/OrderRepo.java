@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Integer> {
@@ -20,4 +21,7 @@ public interface OrderRepo extends JpaRepository<Order, Integer> {
     // Retrieves an order from a specific day
     public Order findOrderByDate(Date date)
      */
+
+    Optional<Order> findByUserIdAndOrderId(int user_id, int order_id);
+    List<Order> findAllByUserId(int user_id);
 }
