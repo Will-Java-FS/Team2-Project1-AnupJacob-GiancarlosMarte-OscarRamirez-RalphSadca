@@ -30,6 +30,18 @@ public class OrderController {
         return retrievedOrder==null ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) : new ResponseEntity<>(retrievedOrder, HttpStatus.OK);
     }
 
+    @DeleteMapping("/order/{user_id}")
+    public ResponseEntity<Order> deleteOrderByUserId(@PathVariable int user_id){
+        os.deleteOrderByUserId(user_id);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
+
+    @GetMapping("/order")
+    public ResponseEntity<List<Order>> getAllOrders() {
+        List<Order> orders = os.getAllOrders();
+        return orders == null ? new ResponseEntity<>(null, HttpStatus.BAD_REQUEST) : new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
     @RequestMapping(method=RequestMethod.GET, value="orders/{user_id}")
     public List<Order> getAllUserOrders(@PathVariable int user_id){
         return os.getAllUserOrders(user_id);

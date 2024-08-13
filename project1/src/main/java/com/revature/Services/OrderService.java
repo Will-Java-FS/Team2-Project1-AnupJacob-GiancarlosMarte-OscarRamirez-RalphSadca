@@ -21,6 +21,14 @@ public class OrderService {
         return or.save(order);
     }
 
+    public List<Order> getAllOrders() {
+        return or.findAll();
+    }
+
+    public void deleteOrderByUserId(int user_id) {
+        or.deleteOrderByUserId(user_id);
+    }
+
     public Order getOrderById(int user_id, int order_id){
         return or.findByUserIdAndOrderId(user_id, order_id).orElse(null);
     }
