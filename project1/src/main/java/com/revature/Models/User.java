@@ -31,8 +31,9 @@ public class User implements UserDetails {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(length = 11)
-    private String address;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User_Address address;
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime created_at = LocalDateTime.now();
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
@@ -156,7 +157,15 @@ public class User implements UserDetails {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getUser_id() == user.getUser_id() && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getCreated_at(), user.getCreated_at()) && Objects.equals(getUpdated_at(), user.getUpdated_at()) && Objects.equals(getRole(), user.getRole());
+        return getUser_id() == user.getUser_id()
+                && Objects.equals(getUsername(), user.getUsername())
+                && Objects.equals(getEmail(), user.getEmail())
+                && Objects.equals(getPassword(), user.getPassword())
+                && Objects.equals(getFirstName(), user.getFirstName())
+                && Objects.equals(getLastName(), user.getLastName())
+                && Objects.equals(getCreated_at(), user.getCreated_at())
+                && Objects.equals(getUpdated_at(), user.getUpdated_at())
+                && Objects.equals(getRole(), user.getRole());
     }
 
     @Override
