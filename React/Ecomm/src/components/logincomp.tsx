@@ -1,4 +1,6 @@
-import { useRef, useState } from "react"
+//import { useRef, useState } from "react"
+
+import { Link } from "react-router-dom";
 
 export  default function Login(){
 
@@ -10,6 +12,7 @@ export  default function Login(){
         Username: <input type="text"/><br></br>
         Password: <input type="text"/><br></br>
         <button>Login</button>
+        <Link to="/main">LoginLink</Link>
         </>
     )
 }
