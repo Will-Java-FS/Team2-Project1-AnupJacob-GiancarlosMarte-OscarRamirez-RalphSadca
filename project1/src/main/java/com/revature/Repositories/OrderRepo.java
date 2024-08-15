@@ -5,12 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface OrderRepo extends JpaRepository<Order, Integer> {
-
-    // Made before User model finished - might need renaming
-    public List<Order> findOrdersByUser(int user);
 
     /* Stretch Goal: filter orders by date created is useful for the user front end
 
@@ -20,4 +18,10 @@ public interface OrderRepo extends JpaRepository<Order, Integer> {
     // Retrieves an order from a specific day
     public Order findOrderByDate(Date date)
      */
+
+    Optional<Order> findByUserIdAndOrderId(int user_id, int order_id);
+
+    List<Order> findAllByUserId(int user_id);
+
+    void deleteOrderByUserId(int user_id);
 }

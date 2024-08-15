@@ -1,15 +1,22 @@
 package com.revature.Models;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Data
 @Entity
+@Builder
 @Table(name="User")
-public class User {
+public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -24,14 +31,19 @@ public class User {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User_Address address;
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime created_at = LocalDateTime.now();
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime updated_at = LocalDateTime.now();
     @Column(length = 10)
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
-    public User(int user_id, String username, String email, String password, String firstName, String lastName,  LocalDateTime created_at, LocalDateTime updated_at, String role) {
+    public User(int user_id, String username, String email, String password, String firstName, String lastName,
+                LocalDateTime created_at, LocalDateTime updated_at, Role role) {
         this.user_id = user_id;
         this.username = username;
         this.email = email;
@@ -43,6 +55,36 @@ public class User {
         this.role = role;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(role.name()));
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
+    public String getUsername() {
+        return username;
+    }
+
     public int getUser_id() {
         return user_id;
     }
@@ -50,11 +92,6 @@ public class User {
     public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
-
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -107,11 +144,11 @@ public class User {
         this.updated_at = updated_at;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -120,7 +157,15 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return getUser_id() == user.getUser_id() && Objects.equals(getUsername(), user.getUsername()) && Objects.equals(getEmail(), user.getEmail()) && Objects.equals(getPassword(), user.getPassword()) && Objects.equals(getFirstName(), user.getFirstName()) && Objects.equals(getLastName(), user.getLastName()) && Objects.equals(getCreated_at(), user.getCreated_at()) && Objects.equals(getUpdated_at(), user.getUpdated_at()) && Objects.equals(getRole(), user.getRole());
+        return getUser_id() == user.getUser_id()
+                && Objects.equals(getUsername(), user.getUsername())
+                && Objects.equals(getEmail(), user.getEmail())
+                && Objects.equals(getPassword(), user.getPassword())
+                && Objects.equals(getFirstName(), user.getFirstName())
+                && Objects.equals(getLastName(), user.getLastName())
+                && Objects.equals(getCreated_at(), user.getCreated_at())
+                && Objects.equals(getUpdated_at(), user.getUpdated_at())
+                && Objects.equals(getRole(), user.getRole());
     }
 
     @Override
