@@ -31,9 +31,6 @@ public class User implements UserDetails {
     private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private User_Address address;
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
     private LocalDateTime created_at = LocalDateTime.now();
     @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
