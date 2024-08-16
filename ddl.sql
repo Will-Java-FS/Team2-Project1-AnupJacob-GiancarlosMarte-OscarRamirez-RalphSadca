@@ -45,6 +45,7 @@ create table ecommerce.user(
 create table category(
 	category_id SERIAL,
 	name varchar(50) NOT NULL,
+	image_url varchar(2000),
 	PRIMARY KEY(category_id)
 );
 
@@ -54,6 +55,7 @@ create table product(
 	description varchar(20),
 	price decimal(10,2) NOT NULL,
 	category_id int,
+	image_url varchar(2000),
 	PRIMARY KEY(product_id),
 	CONSTRAINT fk_category
 		FOREIGN KEY(category_id) 
