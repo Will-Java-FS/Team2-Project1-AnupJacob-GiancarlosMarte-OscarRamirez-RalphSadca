@@ -3,9 +3,8 @@ DROP TABLE IF EXISTS order_item;
 DROP TABLE IF EXISTS ecommerce.order;
 DROP TABLE IF EXISTS cart_item;
 DROP TABLE IF EXISTS cart;
-DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS product;
-DROP TABLE IF EXISTS ecommerce.user_address;
+DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS ecommerce.user;
 -- SELECT * FROM order_item;
 -- SELECT * FROM ecommerce.order;
@@ -23,32 +22,29 @@ create table ecommerce.user(
 	password varchar(50) NOT NULL,
 	first_name varchar(20) NOT NULL,
 	last_name varchar(20) NOT NULL,
-	created_at timestamp,
-	updated_at timestamp,
-	role varchar(10),
+	role varchar(5),
 	PRIMARY KEY(user_id)
 );
 
-create table user_address(
-	user_address_id SERIAL,
-	user_id int NOT NULL,
-	address_line1 varchar(50),
-	address_line2 varchar(50),
-	city varchar(50),
-	postal_code varchar(50),
-	country varchar(50),
-	telephone varchar(11),
-	mobile varchar(11),
-	PRIMARY KEY(user_address_id),
-	CONSTRAINT fk_user
-		FOREIGN KEY(user_id)
-		REFERENCES ecommerce.user(user_id)
-);
+-- create table user_address(
+-- 	user_address_id SERIAL,
+-- 	user_id int NOT NULL,
+-- 	address_line1 varchar(50),
+-- 	address_line2 varchar(50),
+-- 	city varchar(50),
+-- 	state varchar(2),
+-- 	postal_code varchar(50),
+-- 	telephone varchar(13),
+-- 	mobile varchar(13),
+-- 	PRIMARY KEY(user_address_id),
+-- 	CONSTRAINT fk_user
+-- 		FOREIGN KEY(user_id)
+-- 		REFERENCES ecommerce.user(user_id)
+-- );
 		
 create table category(
 	category_id SERIAL,
 	name varchar(50) NOT NULL,
-	created_at timestamp,
 	PRIMARY KEY(category_id)
 );
 
@@ -58,7 +54,6 @@ create table product(
 	description varchar(20),
 	price decimal(10,2) NOT NULL,
 	category_id int,
-	time_created timestamp,
 	PRIMARY KEY(product_id),
 	CONSTRAINT fk_category
 		FOREIGN KEY(category_id) 
@@ -80,8 +75,6 @@ create table cart_item(
 	product_id int NOT NULL,
 	cart_id int NOT NULL,
 	quantity int DEFAULT 1,
-	created_at timestamp,
-	modified_at timestamp,
 	PRIMARY KEY(cart_item_id),
 	CONSTRAINT fk_product
 		FOREIGN KEY(product_id)
@@ -93,7 +86,6 @@ create table ecommerce.order(
 	user_id int NOT NULL,
 	cart_id int NOT NULL,
 	total decimal(10,2),
-	time_created timestamp,
 	PRIMARY KEY(order_id),
 	CONSTRAINT fk_user
 		FOREIGN KEY(user_id)
@@ -108,7 +100,6 @@ create table order_item(
 	order_id int NOT NULL,
 	product_id int NOT NULL,
 	quantity int DEFAULT 1,
-	created_at timestamp,
 	PRIMARY KEY (order_items_id),
 	CONSTRAINT fk_order
 		FOREIGN KEY (order_id)
