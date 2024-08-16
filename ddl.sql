@@ -38,7 +38,7 @@ create table category(
 create table product(
 	product_id SERIAL,
 	title varchar(50) NOT NULL,
-	description varchar(20),
+	description varchar(150),
 	price decimal(10,2) NOT NULL,
 	category_id int,
 	image_url varchar(2000),
