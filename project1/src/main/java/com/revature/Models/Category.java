@@ -9,6 +9,7 @@ import java.util.Objects;
 @Data
 @Entity
 @Table(name = "Category")
+@NoArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,13 +17,13 @@ public class Category {
     int category_id;
     @Column(nullable = false)
     String name;
-    @Column(nullable = false, columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime created_at = LocalDateTime.now();
+    @Column(name="image_url", nullable = false)
+    private String image_url;
 
-    public Category(int category_id, String name, LocalDateTime created_at) {
+    public Category(int category_id, String name, String image_url) {
         this.category_id = category_id;
         this.name = name;
-        this.created_at = created_at;
+        this.image_url = image_url;
     }
 
     public int getCategory_id() {
@@ -41,12 +42,12 @@ public class Category {
         this.name = name;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
+    public String getImage_url() {
+        return image_url;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     @Override
@@ -54,12 +55,12 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Category category = (Category) o;
-        return getCategory_id() == category.getCategory_id() && Objects.equals(getName(), category.getName()) && Objects.equals(getCreated_at(), category.getCreated_at());
+        return getCategory_id() == category.getCategory_id() && Objects.equals(getName(), category.getName()) && Objects.equals(getImage_url(), category.getImage_url());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCategory_id(), getName(), getCreated_at());
+        return Objects.hash(getCategory_id(), getName(), getImage_url());
     }
 
     @Override
@@ -67,7 +68,7 @@ public class Category {
         return "Category{" +
                 "category_id=" + category_id +
                 ", name='" + name + '\'' +
-                ", created_at=" + created_at +
+                ", image_url=" + image_url +
                 '}';
     }
 }

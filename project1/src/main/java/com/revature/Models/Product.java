@@ -22,23 +22,23 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private BigDecimal price;
-    @OneToMany
+    @OneToOne // changed from OneToMany; Spring message: Property 'com.revature.Models.Product.category' is not a collection and may not be a '@OneToMany', '@ManyToMany', or '@ElementCollection'
     @JoinColumn(name = "category_id")
     private Category category;
     @Column
-    private LocalDateTime time_created;
+    private String image_url;
 
     public Product() {
     }
 
     public Product(int product_id, String title, String description, BigDecimal price, Category category,
-                   LocalDateTime time_created) {
+                   String image_url) {
         this.product_id = product_id;
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
-        this.time_created = time_created;
+        this.image_url = image_url;
     }
 
     public void setProduct_id(int product_id) {
@@ -61,8 +61,8 @@ public class Product {
         this.category = category;
     }
 
-    public void setTime_created(LocalDateTime time_created) {
-        this.time_created = time_created;
+    public void setImage_id(String image_url) {
+        this.image_url = image_url;
     }
 
     @Override
@@ -75,13 +75,13 @@ public class Product {
                 && Objects.equals(getDescription(), product.getDescription())
                 && Objects.equals(getPrice(), product.getPrice())
                 && Objects.equals(getCategory(), product.getCategory())
-                && Objects.equals(getTime_created(), product.getTime_created());
+                && Objects.equals(getImage_url(), product.getImage_url());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getProduct_id(), getTitle(), getDescription(), getPrice(), getCategory(),
-                getTime_created());
+                getImage_url());
     }
 
     @Override
@@ -92,7 +92,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", category=" + category +
-                ", time_created=" + time_created +
+                ", image_id=" + image_url +
                 '}';
     }
 }

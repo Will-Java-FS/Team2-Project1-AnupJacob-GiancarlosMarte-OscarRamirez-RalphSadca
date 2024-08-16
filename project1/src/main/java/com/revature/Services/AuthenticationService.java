@@ -30,7 +30,7 @@
 //                .password(passwordEncoder.encode(request.getPassword()))
 //                .firstName(request.getFirstname())
 //                .lastName(request.getLastname())
-//                .address(request.getAddress())
+////                .address(request.getAddress())
 //                .role(Role.USER)
 //                .created_at(LocalDateTime.now())
 //                .updated_at(LocalDateTime.now())
