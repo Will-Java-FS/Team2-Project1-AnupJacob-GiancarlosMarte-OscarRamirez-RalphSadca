@@ -6,6 +6,8 @@ DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS ecommerce.user;
+
+
 -- SELECT * FROM order_item;
 -- SELECT * FROM ecommerce.order;
 -- SELECT * FROM cart;
@@ -17,7 +19,7 @@ DROP TABLE IF EXISTS ecommerce.user;
 
 create table ecommerce.user(
 	user_id SERIAL,
-	username varchar(50) NOT NULL,
+	username varchar(50) UNIQUE NOT NULL,
 	email varchar(50) UNIQUE NOT NULL,
 	password varchar(50) NOT NULL,
 	first_name varchar(20) NOT NULL,
@@ -25,22 +27,6 @@ create table ecommerce.user(
 	role varchar(5),
 	PRIMARY KEY(user_id)
 );
-
--- create table user_address(
--- 	user_address_id SERIAL,
--- 	user_id int NOT NULL,
--- 	address_line1 varchar(50),
--- 	address_line2 varchar(50),
--- 	city varchar(50),
--- 	state varchar(2),
--- 	postal_code varchar(50),
--- 	telephone varchar(13),
--- 	mobile varchar(13),
--- 	PRIMARY KEY(user_address_id),
--- 	CONSTRAINT fk_user
--- 		FOREIGN KEY(user_id)
--- 		REFERENCES ecommerce.user(user_id)
--- );
 		
 create table category(
 	category_id SERIAL,
