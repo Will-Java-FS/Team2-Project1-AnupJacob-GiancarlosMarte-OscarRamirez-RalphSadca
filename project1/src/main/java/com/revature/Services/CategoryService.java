@@ -17,11 +17,14 @@ public class CategoryService {
         this.cr = cr;
     }
 
+    // CLIENT SERVICE
+    public List<Category> getAllCategories(){
+        return cr.findAll();
+    }
+
+    // ADMIN SERVICE
     public Category addCategory(Category category){
         return cr.save(category);
     }
 
-    public List<Category> getAllCategories(){
-        return cr.findAll();
-    }
 }
