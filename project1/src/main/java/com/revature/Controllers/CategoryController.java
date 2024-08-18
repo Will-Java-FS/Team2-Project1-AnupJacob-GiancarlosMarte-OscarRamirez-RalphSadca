@@ -19,7 +19,6 @@ public class CategoryController {
         this.cs = cs;
     }
 
-
     // CLIENT CONTROLLER
     @RequestMapping(method=RequestMethod.GET, value="/category")
     public ResponseEntity<List<Category>> getAllCategories(){

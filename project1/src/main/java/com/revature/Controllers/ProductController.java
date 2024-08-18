@@ -20,7 +20,6 @@ public class ProductController {
     }
 
     // CLIENT CONTROLLER(S)
-
     @RequestMapping(method=RequestMethod.GET, value="/products")
     public List<Product> getAllProducts(){
         return ps.getAllProducts();
@@ -33,7 +32,6 @@ public class ProductController {
 
 
     // ADMIN CONTROLLER(S)
-
     @RequestMapping(method=RequestMethod.GET, value="/product/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable int id){
         Product retrievedProduct =  ps.getProductById(id);
@@ -49,4 +47,5 @@ public class ProductController {
     public void deleteProductById(@PathVariable int id){
         ps.deleteProductById(id);
     }
+
 }
