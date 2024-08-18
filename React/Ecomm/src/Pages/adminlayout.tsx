@@ -1,21 +1,21 @@
 import {Outlet, Link} from "react-router-dom"
 
-const Layout = () =>{
+const Layoutadmin = () =>{
     return(
         <>
         <nav>
             <ul>
                 <li>
-                    <Link to="/main">Home</Link>
+                    <Link to="/admin/main">Home</Link>
                 </li>
                 <li>
-                    <Link to="/cart">Cart</Link>
+                    <Link to="/admin/cart">Cart</Link>
                 </li>
                 <li>
-                    <Link to="/item">Items</Link>
+                    <Link to="/admin/item">Items</Link>
                 </li>
                 <li>
-                    <Link to="/contact">Contact Us</Link>
+                    <Link to="/admin/contact">Contact Us</Link>
                 </li>
             </ul>
         </nav>
@@ -23,4 +23,4 @@ const Layout = () =>{
         </>
     )
 }
-export default Layout
+export default Layoutadmin

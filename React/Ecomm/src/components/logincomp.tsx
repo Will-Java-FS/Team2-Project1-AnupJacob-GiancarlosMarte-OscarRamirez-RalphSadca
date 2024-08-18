@@ -16,6 +16,10 @@ function test(){
        
          navigate("/main");
     }
+    else if(user=="us" && pas=="12"){
+       
+        navigate("/admin/main");
+   }
     else{
         //console.log(a)
         alert("Please try again")

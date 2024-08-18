@@ -1,11 +1,11 @@
 import { Main } from "../components/maincomp"
 import { Test } from "../components/test"
 
-const MainPage = () => {
+const MainPagee = () => {
     return(
         <>
         <Main/>
         </>
     )
 } 
-export default MainPage
+export default MainPagee
