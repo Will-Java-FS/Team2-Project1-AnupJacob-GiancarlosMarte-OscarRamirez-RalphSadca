@@ -9,6 +9,4 @@ import java.util.List;
 @Repository
 public interface CartItemRepo extends JpaRepository<CartItem, Integer> {
 
-
-    List<CartItem> findByCartId(int cart_id);
 }

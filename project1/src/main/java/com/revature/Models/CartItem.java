@@ -1,19 +1,16 @@
 package com.revature.Models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.AllArgsConstructor;
 
-import java.time.LocalDateTime;
 
+@Data
 @Entity
-@Table(name="cart_item")
-@AllArgsConstructor
 @NoArgsConstructor
-@Setter
-@Getter
+@AllArgsConstructor
+@Table(name="cart_item")
 public class CartItem{
 
     @Id
@@ -24,15 +21,10 @@ public class CartItem{
     @JoinColumn(name="product_id", nullable = false)
     private Product product;
 
-    @Column(name="cart_id", nullable = false)
-    private int cart_id;
+    @ManyToOne
+    @JoinColumn(name="cart_id", nullable = false)
+    private Cart cart;
 
     @Column(name="quantity")
     private int quantity;
-
-    @Column(name="created_at",columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime created_at;
-
-    @Column(name="modified_at",columnDefinition = "TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP")
-    private LocalDateTime modified_at;
 }

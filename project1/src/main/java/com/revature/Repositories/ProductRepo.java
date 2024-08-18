@@ -12,18 +12,8 @@ import java.util.List;
 
 @Repository
 public interface ProductRepo extends JpaRepository<Product, Integer> {
-    public List<Product> findProductsByCategory(String category);
-    public List<Product> findProductsByCategoryId(int category_id);
 
-    /*
-    Stretch Goal: Functions for searching product by name and price
-    - useful for a filter menu on the front end
+    @Query("SELECT p FROM Product p WHERE p.category.category_id = :category_id")
+    public List<Product> findProductsByCategoryId(@Param("category_id") int category_id);
 
-    public List<Product> findProductsByTitle(String title);
-    public List<Product> findProductsByMoney(BigDecimal money);
-
-    @Query("From Product WHERE title=:title AND money=:money")
-    public List<Product> findProductsByTitleAndPrice(@Param("title") String title,
-                                                     @Param("money") BigDecimal money);
-    */
 }

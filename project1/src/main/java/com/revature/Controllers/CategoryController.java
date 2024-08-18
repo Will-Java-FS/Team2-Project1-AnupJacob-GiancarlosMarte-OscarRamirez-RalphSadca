@@ -19,15 +19,17 @@ public class CategoryController {
         this.cs = cs;
     }
 
-    @RequestMapping(method= RequestMethod.POST, value="/category")
-    public ResponseEntity<Category> addCategory(@RequestBody Category category){
-        Category newCategory = cs.addCategory(category);
-        return new ResponseEntity<>(newCategory, HttpStatus.CREATED);
-    }
-
+    // CLIENT CONTROLLER
     @RequestMapping(method=RequestMethod.GET, value="/category")
     public ResponseEntity<List<Category>> getAllCategories(){
         List<Category> categories = cs.getAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+
+    // ADMIN CONTROLLER
+    @RequestMapping(method= RequestMethod.POST, value="/category")
+    public ResponseEntity<Category> addCategory(@RequestBody Category category){
+        Category newCategory = cs.addCategory(category);
+        return new ResponseEntity<>(newCategory, HttpStatus.CREATED);
     }
 }

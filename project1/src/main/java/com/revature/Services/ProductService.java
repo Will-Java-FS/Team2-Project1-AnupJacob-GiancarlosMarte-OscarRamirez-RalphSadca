@@ -17,15 +17,25 @@ public class ProductService {
         this.pr = pr;
     }
 
-    public Product getProductById(int id){
-        return pr.findById(id).orElse(null);
-    }
-
+    // CLIENT SERVICE(S)
     public List<Product> getAllProducts(){
         return pr.findAll();
     }
 
-    public List<Product> getProductsByCategory(int category_id){
+    public List<Product> getProductsByCategoryId(int category_id){
         return pr.findProductsByCategoryId(category_id);
+    }
+
+    // ADMIN SERVICE(S)
+    public Product getProductById(int id){
+        return pr.findById(id).orElse(null);
+    }
+
+    public Product addNewProduct(Product product){
+        return pr.save(product);
+    }
+
+    public void deleteProductById(int id){
+        pr.deleteById(id);
     }
 }
