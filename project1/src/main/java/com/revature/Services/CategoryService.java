@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -20,6 +21,10 @@ public class CategoryService {
     // CLIENT SERVICE
     public List<Category> getAllCategories(){
         return cr.findAll();
+    }
+
+    public Optional<Category> findById(int id) {
+        return cr.findById(id);
     }
 
     // ADMIN SERVICE
