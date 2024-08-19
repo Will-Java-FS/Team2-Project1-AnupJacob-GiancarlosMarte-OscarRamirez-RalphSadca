@@ -27,6 +27,19 @@ create table ecommerce.user(
 	role varchar(5),
 	PRIMARY KEY(user_id)
 );
+
+CREATE TABLE token (
+    token_id integer NOT NULL,
+    token character varying,
+    revoked boolean,
+    expired boolean,
+    user_id integer,
+    token_type character varying,
+	PRIMARY KEY(token_id),
+	CONSTRAINT fk_user
+		FOREIGN KEY(user_id) 
+		REFERENCES ecommerce.user(user_id)
+);
 		
 create table category(
 	category_id SERIAL,
@@ -66,7 +79,10 @@ create table cart_item(
 	PRIMARY KEY(cart_item_id),
 	CONSTRAINT fk_product
 		FOREIGN KEY(product_id)
-		REFERENCES product(product_id)
+		REFERENCES product(product_id),
+	CONSTRAINT fk_cart
+		FOREIGN KEY(cart_id)
+		REFERENCES cart(cart_id)
 );
 
 create table ecommerce.order(
