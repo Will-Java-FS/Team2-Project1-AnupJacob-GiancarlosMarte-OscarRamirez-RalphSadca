@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,5 +26,9 @@ public class Cart {
     @OneToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToMany
+    @JoinColumn(name = "cart_id")
+    private List<CartItem> cartItemList;
 
 }
