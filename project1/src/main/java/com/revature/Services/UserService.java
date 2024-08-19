@@ -4,12 +4,16 @@ package com.revature.Services;
 import com.revature.Models.User;
 import com.revature.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserService {
+public class UserService{
 
     UserRepo ur;
 
@@ -58,4 +62,17 @@ public class UserService {
     public void deleteById(int userId) {
         ur.deleteById(userId);
     }
+
+
+
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        Optional<User> user = ur.findByUsername(username);
+//
+//        if (user.isEmpty() || !user.get().isEnabled()) {
+//            throw new UsernameNotFoundException(username + " not found");
+//        }
+//
+//        return user.get();
+//    }
 }

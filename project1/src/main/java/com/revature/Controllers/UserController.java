@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("users")
 public class UserController {
 
     UserService us;
@@ -39,6 +39,23 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.OK).body(found);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
+
+    @PostMapping("/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        User found = us.findById(user.getUser_id());
+        if (found != null) {
+            found = us.updateUser(found);
+            return ResponseEntity.status(HttpStatus.OK).body(found);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<User> deleteUserById(@PathVariable int id) {
+        us.deleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 

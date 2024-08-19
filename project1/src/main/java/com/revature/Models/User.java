@@ -9,14 +9,17 @@ import lombok.NoArgsConstructor;
 //import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.Collection;
+import java.util.List;
+
 @Data
 @Entity
 @Builder
 @Table(name="User")
 @NoArgsConstructor
 @AllArgsConstructor
-// public class User implements UserDetails
-public class User {
+ public class User {
+//public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -34,12 +37,15 @@ public class User {
     @Column(length = 10)
     @Enumerated(EnumType.STRING)
     private Role role;
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private Cart cart;
 
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return List.of(new SimpleGrantedAuthority(role.name()));
+//        return List.of(new SimpleGrantedAuthority(this.role.toString()));
 //    }
-
+//
 //    @Override
 //    public boolean isAccountNonExpired() {
 //        return true;
