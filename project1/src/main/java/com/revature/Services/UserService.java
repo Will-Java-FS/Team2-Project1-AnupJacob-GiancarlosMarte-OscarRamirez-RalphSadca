@@ -51,7 +51,8 @@ public class UserService{
             return null;
         }
         User userToAdd = ur.save(user);
-        cr.save(userToAdd.getCart());
+        Cart cart = cr.save(userToAdd.getCart());
+        userToAdd.setCart(cart);
         return userToAdd;
     }
 
