@@ -1,40 +1,46 @@
-//import { useRef, useState } from "react"
-
-import { useRef } from "react";
+import axios from "axios";
+import { useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-export  default function Login(){
-    const userinput=useRef<HTMLInputElement>(null)
-    const passinput=useRef<HTMLInputElement>(null)
+export default function Login() {
+    const userinput = useRef<HTMLInputElement>(null);
+    const passinput = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
-function test(){
-   // let a:string=document.getElementById("user");
-   // let pas:string=document.getElementById("pass");
-    const user=userinput.current!.value;
-    const pas=passinput.current!.value;
-    if(user=="user" && pas=="1234"){
-       
-         navigate("/main");
-    }
-    else if(user=="us" && pas=="12"){
-       
-        navigate("/admin/main");
-   }
-    else{
-        //console.log(a)
-        alert("Please try again")
-    }
+    const [user, setUser] = useState<any>(null); 
 
-}
- 
-    return(
-        <>
-      
-        Username: <input ref={userinput} type="text"/><br></br>
-        Password: <input ref={passinput} type="text"/><br></br>
-        <button onClick={test}>Login</button>
+    const getData = async () => {
+        if (!userinput.current || !passinput.current) return;
         
-        <Link to="/main">LoginLink</Link>
+        const username = userinput.current.value;
+        const password = passinput.current.value;
+
+        
+        const url = `http://localhost:8080/users/username/${username}`;
+
+        try {
+            const response = await axios.get(url);
+            const userData = response.data; 
+
+          
+            if (password === userData.password && userData.role === "USER") {
+                navigate("/main");
+            } else if (password === userData.password && userData.role === "ADMIN") {
+                navigate("/admin/main");
+            } else {
+                alert("Please try again");
+            }
+        } catch (error) {
+            console.error("Error fetching data:", error);
+            alert("An error occurred. Please try again.");
+        }
+    };
+
+    return (
+        <>
+            Username: <input ref={userinput} type="text" /><br />
+            Password: <input ref={passinput} type="password" /><br />
+            <button onClick={getData}>Login</button>
+            <Link to="/main">LoginLink</Link>
         </>
-    )
+    );
 }
