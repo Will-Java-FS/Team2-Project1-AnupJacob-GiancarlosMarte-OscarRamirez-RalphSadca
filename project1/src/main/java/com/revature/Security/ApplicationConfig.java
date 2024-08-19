@@ -22,7 +22,7 @@
 //
 //    @Bean
 //    public UserDetailsService userDetailsService() {
-//        return username -> userRepo.findByEmail(username)
+//        return username -> userRepo.findByUsername(username)
 //                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
 //    }
 //

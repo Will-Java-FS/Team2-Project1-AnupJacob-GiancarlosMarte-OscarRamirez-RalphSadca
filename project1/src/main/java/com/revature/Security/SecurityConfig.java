@@ -7,11 +7,12 @@
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-//import org.springframework.security.config.http.SessionCreationPolicy;
 //import org.springframework.security.core.context.SecurityContextHolder;
 //import org.springframework.security.web.SecurityFilterChain;
 //import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 //import org.springframework.security.web.authentication.logout.LogoutHandler;
+//
+//import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 //
 //@Configuration
 //@EnableWebSecurity
@@ -23,32 +24,24 @@
 //    private final LogoutHandler logoutHandler;
 //
 //    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http.csrf(AbstractHttpConfigurer::disable);
-//
-//        http.authorizeHttpRequests((request) ->
-//                request.requestMatchers("auth/**")
-//                        .permitAll()
-//                        .requestMatchers("/admin/user/**").hasRole("ADMIN")
-//                        .anyRequest()
-//                        .authenticated()
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http
+//                .csrf((AbstractHttpConfigurer::disable))
+//                .authorizeHttpRequests((req)->
+//                        req.requestMatchers("/auth/**").permitAll()
+//                                .requestMatchers("/users/**").hasRole("ADMIN")
+//                                .anyRequest()
+//                                .authenticated()
 //                )
-//                .sessionManagement((session) ->
-//                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-//                )
+//                .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
 //                .authenticationProvider(authenticationProvider)
 //                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-//                .logout((logout) ->
+//                .logout(logout->
 //                        logout.logoutUrl("/auth/logout")
 //                                .addLogoutHandler(logoutHandler)
-//                                .logoutSuccessHandler((request,
-//                                                        response,
-//                                                        authentication) ->
-//                                        SecurityContextHolder.clearContext()
-//                                )
+//                                .logoutSuccessHandler((request,response,authentication) -> SecurityContextHolder.clearContext())
 //                );
 //
 //        return http.build();
 //    }
-//
 //}

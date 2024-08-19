@@ -18,25 +18,25 @@
 //
 //    private static final String SECRET_KEY = "DA71AAC7B693D96F4E1B4F5AA7871";
 //
-//    public String extractUsername(String token) {
-//        return extractClaim(token, Claims::getSubject);
-//    }
-//
 //    public String generateToken(UserDetails userDetails) {
 //        return generateToken(new HashMap<>(), userDetails);
 //    }
 //
+//
+//
 //    public String generateToken(Map<String, Object> claims, UserDetails userDetails) {
-//        String issuer = "Ecommerce";
 //        return Jwts
 //                .builder()
-//                .setIssuer(issuer)
-//                .setClaims(claims)
+//                .addClaims(claims)
 //                .setSubject(userDetails.getUsername())
 //                .setIssuedAt(new Date(System.currentTimeMillis()))
 //                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 50))
-//                .signWith(getSignInKey(), SignatureAlgorithm.ES256)
+//                .signWith(getSignInKey())
 //                .compact();
+//    }
+//
+//    public String extractUsername(String token) {
+//        return extractClaim(token, Claims::getSubject);
 //    }
 //
 //    public boolean isTokenValid(String token, UserDetails userDetails) {
