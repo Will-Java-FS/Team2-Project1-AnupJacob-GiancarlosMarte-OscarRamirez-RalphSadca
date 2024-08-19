@@ -1,7 +1,9 @@
 package com.revature.Services;
 
 
+import com.revature.Models.Cart;
 import com.revature.Models.User;
+import com.revature.Repositories.CartRepo;
 import com.revature.Repositories.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.core.userdetails.UserDetails;
@@ -16,10 +18,12 @@ import java.util.Optional;
 public class UserService{
 
     UserRepo ur;
+    CartRepo cr;
 
     @Autowired
-    public UserService(UserRepo ur) {
+    public UserService(UserRepo ur, CartRepo cartRepo) {
         this.ur = ur;
+        this.cr = cr;
     }
 
     public List<User> findAll() {
@@ -43,9 +47,13 @@ public class UserService{
     }
 
     public User addUser(User user) {
-        return ur.findById(user.getUser_id()).isPresent()
-                ? null
-                : ur.save(user);
+        if (ur.findById(user.getUser_id()).isPresent()) {
+            return null;
+        }
+        User userToAdd = ur.save(user);
+        Cart cart = cr.save(userToAdd.getCart());
+        userToAdd.setCart(cart);
+        return userToAdd;
     }
 
     public User updateUser(User user) {
@@ -60,7 +68,11 @@ public class UserService{
     }
 
     public void deleteById(int userId) {
-        ur.deleteById(userId);
+        User user = ur.findById(userId).orElse(null);
+        if (user != null) {
+            cr.deleteById(user.getCart().getCart_id());
+            ur.deleteById(userId);
+        }
     }
 
 
