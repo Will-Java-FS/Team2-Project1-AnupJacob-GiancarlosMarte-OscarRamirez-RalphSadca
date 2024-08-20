@@ -1,9 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { Button, Card } from 'react-bootstrap';
 
 interface Product {
+  category: string;
   id: string;
   title: string;
+  description: string
+  price: number
   // Add other product fields as needed
 }
 
@@ -95,15 +99,27 @@ export function Main() {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       
-      <div>
+      {/* <div>
         {products.length > 0 && (
           <ul>
             {products.map(product => (
-              <li key={product.id}>{product.title}</li>
+              <li key={product.id}>{product.title} {product.price}</li>
             ))}
           </ul>
         )}
-      </div>
+      </div> */}
+      {products.map(product => (
+      <Card style={{ width: '18rem' }}>
+      <Card.Img variant="top" src="path/to/image.jpg" />
+      <Card.Body>
+        <Card.Title>{product.title}</Card.Title>
+        <Card.Text>Description: {product.description}</Card.Text>
+        <Card.Text>Price: {product.price}</Card.Text>
+         <Card.Text>Catergory: {product.category.name}</Card.Text> 
+        <Button variant="primary">Go somewhere</Button>
+      </Card.Body>
+    </Card>
+      ))}
     </>
   );
 }
