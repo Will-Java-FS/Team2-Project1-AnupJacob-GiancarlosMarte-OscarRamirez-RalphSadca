@@ -20,11 +20,17 @@ export default function Login() {
         try {
             const response = await axios.get(url);
             const userData = response.data; 
+            const { user_id } = response.data;
+
+            // Save user ID in local storage
+           
 
           
             if (password === userData.password && userData.role === "USER") {
+                localStorage.setItem("user_id", user_id);
                 navigate("/main");
             } else if (password === userData.password && userData.role === "ADMIN") {
+                localStorage.setItem("user_id", user_id);
                 navigate("/admin/main");
             } else {
                 alert("Please try again");

@@ -99,7 +99,7 @@ export function Main() {
       {loading && <p>Loading...</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
       
-      {/* <div>
+     { /* <div>
         {products.length > 0 && (
           <ul>
             {products.map(product => (
@@ -116,7 +116,7 @@ export function Main() {
         <Card.Text>Description: {product.description}</Card.Text>
         <Card.Text>Price: {product.price}</Card.Text>
          <Card.Text>Catergory: {product.category.name}</Card.Text> 
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary">Add to cart</Button>
       </Card.Body>
     </Card>
       ))}
