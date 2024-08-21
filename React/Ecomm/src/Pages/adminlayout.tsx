@@ -15,6 +15,9 @@ const Layoutadmin = () =>{
                     <Link to="/admin/item">Items</Link>
                 </li>
                 <li>
+                    <Link to="/admin/profile">Profile</Link>
+                </li>
+                <li>
                     <Link to="/admin/contact">Contact Us</Link>
                 </li>
             </ul>

@@ -14,6 +14,7 @@ import Itempage from './Pages/itempage.tsx'
 import Itemadminpage from './Pages/itemadmin.tsx'
 import Contactpage from './Pages/contactpage.tsx'
 import Layoutadmin from './Pages/adminlayout.tsx'
+import UserPage from './Pages/Userpage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')!).render(
           <Route path="main" element={<MainPage/>}/>
           <Route path="cart" element={<CartPage/>}/>
           < Route path="item" element={<Itempage/>}/>
+          < Route path="profile" element={<UserPage/>}/>
           < Route path ="contact" element={<Contactpage/>}/>
         </Route>
         </Routes>
@@ -34,6 +36,7 @@ createRoot(document.getElementById('root')!).render(
            <Route path="/admin/main" element={<MainPagee/>}/> 
            <Route path="/admin/cart" element={<CartPage/>}/> 
            <Route path="/admin/item" element={<Itemadminpage/>}/>
+           < Route path="/admin/profile" element={<UserPage/>}/>
            <Route path ="/admin/contact" element={<Contactpage/>}/>
          </Route>   
      </Routes>
