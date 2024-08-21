@@ -2,6 +2,7 @@ package com.revature.Services;
 
 import com.revature.Models.Product;
 import com.revature.Repositories.ProductRepo;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,5 +38,9 @@ public class ProductService {
 
     public void deleteProductById(int id){
         pr.deleteById(id);
+    }
+
+    @Transactional
+    public void deleteProductByTitle(String title) {pr.deleteByTitle(title);
     }
 }

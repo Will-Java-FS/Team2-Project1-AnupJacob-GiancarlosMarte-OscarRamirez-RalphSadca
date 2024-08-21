@@ -114,7 +114,7 @@ export function Main() {
       </div> */}
       {products.map(product => (
       <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="path/to/image.jpg" />
+      {/* <Card.Img variant="top" src="path/to/image.jpg" /> */}
       <Card.Body>
         <Card.Title>{product.title}</Card.Title>
         <Card.Text>Description: {product.description}</Card.Text>

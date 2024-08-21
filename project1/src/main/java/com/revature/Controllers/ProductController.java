@@ -48,4 +48,7 @@ public class ProductController {
         ps.deleteProductById(id);
     }
 
+    @DeleteMapping("/product/{title}")
+    public void deleteProductByTitle(@PathVariable String title){ps.deleteProductByTitle(title);
+        }
 }
