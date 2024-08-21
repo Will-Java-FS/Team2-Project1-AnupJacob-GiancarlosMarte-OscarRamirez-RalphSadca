@@ -11,9 +11,9 @@ const Itemadminpage = () => {
   const descriptioninput = useRef<HTMLInputElement>(null);
   const priceinput = useRef<HTMLInputElement>(null);
   const category_idinput = useRef<HTMLInputElement>(null);
-  const deleteTitleinput = useRef<HTMLInputElement>(null); // Input for title to delete
+  const deleteTitleinput = useRef<HTMLInputElement>(null); 
 
-  const [items, setItems] = useState<any[]>([]); // Initialize as an empty array
+  const [items, setItems] = useState<any[]>([]); 
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -32,7 +32,14 @@ const Itemadminpage = () => {
       setLoading(false);
     }
   };
-
+  
+  const clearInputs = () => {
+    if (titleinput.current) titleinput.current.value = '';
+    if (descriptioninput.current) descriptioninput.current.value = '';
+    if (priceinput.current) priceinput.current.value = '';
+    if (category_idinput.current) category_idinput.current.value = '';
+    if (deleteTitleinput.current) deleteTitleinput.current.value = '';
+  };
   // Add a new item
   const addItem = async () => {
     if (!titleinput.current || !descriptioninput.current || !priceinput.current || !category_idinput.current) return;
@@ -41,6 +48,7 @@ const Itemadminpage = () => {
     const description = descriptioninput.current.value;
     const price = parseFloat(priceinput.current.value);
     const category_id = parseInt(category_idinput.current.value);
+    
 
     const addItemUrl = "http://localhost:8080/add-new-product";
 
@@ -50,9 +58,12 @@ const Itemadminpage = () => {
         description,
         price,
         category_id
+        
+        
       });
       alert('Item added successfully!');
-      fetchItems(); // Refresh the item list
+      fetchItems();
+      clearInputs(); 
     } catch (err) {
       console.error('Error adding item:', err);
       alert('An error occurred while adding the item.');
@@ -70,6 +81,7 @@ const Itemadminpage = () => {
       await axios.delete(deleteItemUrl);
       alert('Item deleted successfully!');
       fetchItems(); // Refresh the item list
+      clearInputs();
     } catch (err) {
       console.error('Error deleting item:', err);
       alert('An error occurred while deleting the item.');
@@ -94,7 +106,7 @@ const Itemadminpage = () => {
               title={item.title}
               description={item.description}
               price={item.price}
-            //   category={item.category ? item.category.name : 'Unknown'} // Handle optional category
+              category={item.category.name}
               index={0} // Update the index as needed
             />
           ))}
