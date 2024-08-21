@@ -21,7 +21,7 @@ public class UserService{
     CartRepo cr;
 
     @Autowired
-    public UserService(UserRepo ur, CartRepo cartRepo) {
+    public UserService(UserRepo ur, CartRepo cr) {
         this.ur = ur;
         this.cr = cr;
     }

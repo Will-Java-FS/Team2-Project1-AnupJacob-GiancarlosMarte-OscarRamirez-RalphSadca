@@ -15,4 +15,5 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
     @Query("SELECT p FROM Product p WHERE p.category.category_id = :category_id")
     public List<Product> findProductsByCategoryId(@Param("category_id") int category_id);
 
+    void deleteByTitle(String title);
 }

@@ -58,13 +58,21 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    @GetMapping("/username/{username}")
+    public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
+        User found = us.findByUsername(username);
+        if (found != null) {
+            return ResponseEntity.status(HttpStatus.OK).body(found);
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    }
 
-//    @PutMapping("user")
-//    public ResponseEntity<User> postOrder(@RequestBody User user){
-//        User savedUser = us.addUser(user);
-//        return savedUser==null ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) : new ResponseEntity<>(savedUser, HttpStatus.OK);
-//    }
-//
+
+     @PutMapping("/register")
+      public ResponseEntity<User> postOrder(@RequestBody User user){
+        User savedUser = us.addUser(user);
+        return savedUser==null ? new ResponseEntity<>(HttpStatus.BAD_REQUEST) : new ResponseEntity<>(savedUser, HttpStatus.OK); }
+
 //    @DeleteMapping("user/{user_id}")
 //    public ResponseEntity<Order> deleteUserById(@PathVariable int user_id){
 //        us.removeUserById(user_id);
