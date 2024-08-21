@@ -23,9 +23,12 @@ public class CategoryService {
         return cr.findAll();
     }
 
-    public Optional<Category> findById(int id) {
-        return cr.findById(id);
-    }
+//    public Optional<Category> findById(int id) {
+//        return cr.findById(id);
+//    }
+public Category findById(int id) {
+    return cr.findById(id);
+}
 
     // ADMIN SERVICE
     public Category addCategory(Category category){

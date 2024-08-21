@@ -28,13 +28,13 @@ public class CategoryController {
         List<Category> categories = cs.getAllCategories();
         return new ResponseEntity<>(categories, HttpStatus.OK);
     }
-
-    @GetMapping("/category/{id}")
-    public ResponseEntity<Category> getCategoryById(@PathVariable int id) {
-        Optional<Category> category = cs.findById(id);
-        return category.map(value -> ResponseEntity.status(HttpStatus.OK).body(value))
-                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-    }
+//
+//    @GetMapping("/category/{id}")
+//    public ResponseEntity<Category> getCategoryById(@PathVariable int id) {
+//        Optional<Category> category = cs.findById(id);
+//        return category.map(value -> ResponseEntity.status(HttpStatus.OK).body(value))
+//                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+//    }
 
     // ADMIN CONTROLLER
     @RequestMapping(method= RequestMethod.POST, value="/category")
