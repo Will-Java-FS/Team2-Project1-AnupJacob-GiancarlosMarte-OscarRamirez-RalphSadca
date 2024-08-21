@@ -9,8 +9,7 @@ const Itempage=()=>{
 
     const [item, setItem] = useState(''); 
 
-    // Hard coded until cart and user props can be passed
-    const cart_id : number = 99; // 99 is a cart_id
+    const cart_id = Number(localStorage.getItem("user_id"));
 
     const getItems = async () => {
         const response = await axios.get("http://localhost:8080/products");

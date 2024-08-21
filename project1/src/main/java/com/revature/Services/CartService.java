@@ -31,4 +31,11 @@ public class CartService {
         cr.deleteById(cartId);
     }
 
+    public Cart createCartForNewUser(Cart cart){
+        return cr.save(cart);
+    }
+
+    public void updateCartTotal(int user_id, int new_total_value){
+        cr.updateCartTotal(user_id, new_total_value);
+    }
 }
