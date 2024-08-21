@@ -10,11 +10,14 @@ const CartPage = () => {
 
     const [cartItems, setCartItems] = useState('');
 
+    const user_id = Number(localStorage.getItem("user_id"));
+
     const getCartItems = async () => {
-        const response = await axios.get("http://localhost:8080/get-cart-items/99");
+        const response = await axios.get(`http://localhost:8080/get-cart-items/${user_id}`);
         setCartItems(response.data);
-        console.log(response.data)
     }
+
+    console.log(cartItems);
 
     useEffect(() => {
         getCartItems();
@@ -26,21 +29,16 @@ const CartPage = () => {
         <Main/>
         <button>Buy</button>
 
-        <Container fluid>
-            <Row>
-                <Col>
-                    <Row>
-                        {
-                        cartItems && cartItems.map && cartItems.map((cartItems) => (
-                                <CartItem key={cartItems.cart_item_id} cart_item_id={cartItems.cart_item_id} title={cartItems.product.title} price={cartItems.product.price} quantity={cartItems.quantity} image_url={cartItems.image_url}/>
-                        ))
-                        }
-                    </Row>
-                </Col>
+        <Container>
             <Col>
-              
+                <Row>
+                    {
+                    cartItems && cartItems.map && cartItems.map((cartItems) => (
+                    <CartItem key={cartItems.cart_item_id} cart_item_id={cartItems.cart_item_id} title={cartItems.product.title} price={cartItems.product.price} quantity={cartItems.quantity} image_url={cartItems.image_url}/>
+                    ))
+                    }
+                </Row>
             </Col>
-            </Row>
         </Container>
         </>
     )
