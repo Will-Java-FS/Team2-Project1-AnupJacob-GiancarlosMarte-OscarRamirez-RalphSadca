@@ -7,15 +7,18 @@ import Row from 'react-bootstrap/Row';
 
 const Itempage=()=>{
 
-    const [item, setItem] = useState('');
+    const [item, setItem] = useState(''); 
 
-    const getData = async () => {
+    // Hard coded until cart and user props can be passed
+    const cart_id : number = 99; // 99 is a cart_id
+
+    const getItems = async () => {
         const response = await axios.get("http://localhost:8080/products");
         setItem(response.data);
     }
 
     useEffect(() => {
-        getData();
+        getItems();
       }, []);
 
     return(
@@ -24,7 +27,7 @@ const Itempage=()=>{
             <Row>
                {
                item && item.map && item.map((item) => (
-                     <Item key={item.product_id} product_id={item.product_id} title={item.title} description={item.description} price={item.price} category={item.category.name}/>
+                     <Item key={item.product_id} product_id={item.product_id} title={item.title} description={item.description} price={item.price} category={item.category.name} cart_id={cart_id}/>
                ))
                }
             </Row>

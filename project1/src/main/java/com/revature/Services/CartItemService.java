@@ -41,4 +41,12 @@ public class CartItemService {
         }
         return null;
     }
+
+    public List<CartItem> getCartItems(int cart_id){
+        return cir.findAllByCartId(cart_id);
+    }
+
+    public void deleteCartItem(int cart_item_id){
+        cir.deleteById(cart_item_id);
+    }
 }
