@@ -17,24 +17,27 @@ const CartPage = () => {
         setCartItems(response.data);
     }
 
-    console.log(cartItems);
-
+    function deleteCartItem(cart_item_id:number) {
+        axios.delete(`http://localhost:8080/delete-cart-item/${cart_item_id}`) 
+            .then(response => {
+            console.log(`Deleted Cart Item`);
+        })
+        .catch(error => {
+        console.error(error);
+        });
+    }
     useEffect(() => {
         getCartItems();
-      }, []);
+      }, [cartItems]);
 
     return(
         <>
-        <h1>In your Cart</h1>
-        <Main/>
-        <button>Buy</button>
-
         <Container>
             <Col>
                 <Row>
                     {
                     cartItems && cartItems.map && cartItems.map((cartItems) => (
-                    <CartItem key={cartItems.cart_item_id} cart_item_id={cartItems.cart_item_id} title={cartItems.product.title} price={cartItems.product.price} quantity={cartItems.quantity} image_url={cartItems.image_url}/>
+                    <CartItem key={cartItems.cart_item_id} cart_item_id={cartItems.cart_item_id} title={cartItems.product.title} price={cartItems.product.price} quantity={cartItems.quantity} image_url={cartItems.image_url} deleteCartItem={deleteCartItem}/>
                     ))
                     }
                 </Row>

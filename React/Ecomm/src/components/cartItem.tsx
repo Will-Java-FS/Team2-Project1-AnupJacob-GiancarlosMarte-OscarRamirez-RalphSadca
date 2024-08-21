@@ -4,16 +4,10 @@ import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import axios from 'axios';
 
-export default function CartItem(props: {cart_item_id:string, title:string, price:number, quantity:number, image_url:string} ) {
+export default function CartItem(props: {cart_item_id:number, title:string, price:number, quantity:number, image_url:string, deleteCartItem:Function} ) {
 
     function handleRemoveCartItem() {
-        axios.delete(`https://jsonplaceholder.typicode.com/posts/${props.cart_item_id}`) // change
-            .then(response => {
-            console.log(`Deleted post with ID ${props.cart_item_id}`);
-        })
-        .catch(error => {
-        console.error(error);
-        });
+        props.deleteCartItem(props.cart_item_id);
     }
 
     return (
@@ -27,8 +21,8 @@ export default function CartItem(props: {cart_item_id:string, title:string, pric
                     <Card.Text>description</Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                    <ListGroup.Item>Price:{props.price}</ListGroup.Item>
-                    <ListGroup.Item>Quantity:{props.quantity}</ListGroup.Item>
+                    <ListGroup.Item>Total Price: ${props.price * props.quantity}</ListGroup.Item>
+                    <ListGroup.Item>Quantity: {props.quantity}</ListGroup.Item>
                 </ListGroup>
                 <Card.Body>
                     <Card.Text><CloseButton onClick={handleRemoveCartItem} style={{backgroundColor: 'rgba(255, 100, 100, 0.85)'}}/> Remove from Cart</Card.Text>
