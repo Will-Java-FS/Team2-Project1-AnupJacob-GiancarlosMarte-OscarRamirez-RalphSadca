@@ -1,5 +1,7 @@
 package com.revature.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ public class CartItem{
 
     @ManyToOne
     @JoinColumn(name="cart_id", nullable = false)
+    @JsonIgnoreProperties(value={"user", "cartItemList"})
     private Cart cart;
 
     @Column(name="quantity")
