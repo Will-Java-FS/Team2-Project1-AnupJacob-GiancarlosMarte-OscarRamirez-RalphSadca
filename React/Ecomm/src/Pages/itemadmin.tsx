@@ -12,6 +12,9 @@ const Itemadminpage = () => {
   const priceinput = useRef<HTMLInputElement>(null);
   const category_idinput = useRef<HTMLInputElement>(null);
   const deleteTitleinput = useRef<HTMLInputElement>(null); 
+  const nameinput = useRef<HTMLInputElement>(null);
+  //const imginput = useRef<HTMLInputElement>(null); 
+
 
   const [items, setItems] = useState<any[]>([]); 
   const [loading, setLoading] = useState<boolean>(false);
@@ -93,6 +96,30 @@ const Itemadminpage = () => {
     fetchItems();
   }, []);
 
+  const addCategory = async () => {
+    if (!nameinput.current) return;
+
+    const name = nameinput.current.value;
+    const image_url:string="https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1356&h=668&fit=crop";
+
+    const addCategoryUrl = "http://localhost:8080/category";
+
+    try {
+      await axios.post(addCategoryUrl, { name , image_url});
+      alert('Category added successfully!');
+       // Refresh the category list
+      clearInputs(); // Clear inputs after adding
+    } catch (err) {
+      console.error('Error adding category:', err);
+      alert('An error occurred while adding the category.');
+    }
+  };
+  useEffect(() => {
+    fetchItems();
+  }, []);
+
+
+
   return (
     <>
       <Container>
@@ -118,7 +145,9 @@ const Itemadminpage = () => {
         <input ref={deleteTitleinput} type="text" />
         <Button variant="danger" onClick={deleteItemByTitle}>Delete Item by Title</Button>
       </div>
-
+          <br>
+          
+          </br>
       <div>
         <label>Title:</label>
         <input ref={titleinput} type="text" />
@@ -136,6 +165,13 @@ const Itemadminpage = () => {
         <input ref={category_idinput} type="number" />
       </div>
       <Button variant="primary" onClick={addItem}>Add Item</Button>
+      <br></br>
+      <br></br>
+      <div>
+        <label>Name:</label>
+        <input ref={nameinput} type="text" />
+      </div>
+      <Button onClick={addCategory}> Add Category </Button>
     </>
   );
 };
