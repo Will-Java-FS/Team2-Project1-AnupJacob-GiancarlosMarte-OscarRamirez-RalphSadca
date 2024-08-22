@@ -20,7 +20,7 @@ public class ProductController {
     CategoryService cs;
 
     @Autowired
-    private ProductController(ProductService ps){
+    private ProductController(ProductService ps, CategoryService cs){
         this.ps = ps;
         this.cs=cs;
     }
