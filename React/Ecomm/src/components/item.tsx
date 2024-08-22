@@ -36,7 +36,6 @@ export default function Item(props: {product_id:number, title:string, descriptio
    return(
      <> 
       <Card style={{ width: '18rem', margin: '.3rem' }}> 
-            <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
                <Card.Title>{props.title}</Card.Title>
                <Card.Text>Description: {props.description}</Card.Text>
