@@ -3,16 +3,19 @@ nav > ul {
     justify-content: space-between;
 }
 
-li {
+nav > li {
     list-style: none;
-    
 }
 
 Link {
-    padding-left: 1rem;
+    padding-left: 2rem;
     padding-right: 1rem;
 }
 
 span {
-    padding-right: 2rem;
+    padding-right: 1rem;
+}
+
+a {
+    padding-left: 1rem;
 }
