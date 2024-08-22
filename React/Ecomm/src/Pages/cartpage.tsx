@@ -44,6 +44,10 @@ const CartPage = () => {
         setTotalPrice((prevTotalPrice => (prevTotalPrice + price)));
     }
 
+    function handleProceedCheckout(){
+        alert("Your order has been place. Thank you for choosing Ecomm");
+    }
+
     useEffect(() => {
         getCartItems();
     },[]);
@@ -65,7 +69,7 @@ const CartPage = () => {
                 <Form.Control placeholder="Enter Discount Code Here" aria-label="Enter Discount Code Here"aria-describedby="basic-addon2" value={discountCode} onChange={e => setDiscountCode(e.target.value)}/>
                 <Button variant="outline-secondary" onClick={returnPricedis} id="button-addon2">Apply</Button>
                 </InputGroup>
-                <button style={{width:'30rem'}}>Total Price: {(((totalPrice)/2).toFixed(2))}, Proceed?</button> 
+                <button style={{width:'30rem', borderRadius:'3px'}} onClick={handleProceedCheckout}>Total Price: {(((totalPrice)/2).toFixed(2))}, Proceed?</button> 
             </Row>
         </Container>
         </>
