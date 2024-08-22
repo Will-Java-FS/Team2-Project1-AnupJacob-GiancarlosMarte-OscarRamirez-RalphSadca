@@ -46,7 +46,7 @@ export default function Login() {
             Username: <input ref={userinput} type="text" /><br />
             Password: <input ref={passinput} type="password" /><br />
             <button onClick={getData}>Login</button>
-            <Link to="/main">LoginLink</Link>
+          
         </>
     );
 }
