@@ -41,7 +41,7 @@ export function Main() {
 
   return (
     <>
-      <p>Categories</p>
+      <h3>Categories</h3>
       <ul>
         <li>
           <button onClick={() => getData('5')}>

@@ -34,8 +34,8 @@ public class CartService {
     public Cart createCartForNewUser(Cart cart){
         return cr.save(cart);
     }
-
-    public void updateCartTotal(int user_id, int new_total_value){
-        cr.updateCartTotal(user_id, new_total_value);
-    }
+//
+//    public void updateCartTotal(int user_id, int new_total_value){
+//        cr.updateCartTotal(user_id, new_total_value);
+//    }
 }

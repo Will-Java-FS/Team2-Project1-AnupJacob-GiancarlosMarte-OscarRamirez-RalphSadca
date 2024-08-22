@@ -52,11 +52,11 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUserById(@PathVariable int id) {
-        us.deleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
-    }
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<User> deleteUserById(@PathVariable int id) {
+//        us.deleteById(id);
+//        return ResponseEntity.status(HttpStatus.OK).build();
+//    }
 
     @GetMapping("/username/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {

@@ -37,9 +37,6 @@ import java.util.List;
     @Column(length = 10)
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToOne
-    @JoinColumn(name = "user_id")
-    private Cart cart;
 
 //    @Override
 //    public Collection<? extends GrantedAuthority> getAuthorities() {
