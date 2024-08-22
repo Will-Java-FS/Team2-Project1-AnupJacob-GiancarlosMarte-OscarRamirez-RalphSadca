@@ -1,0 +1,21 @@
+nav > ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+nav > li {
+    list-style: none;
+}
+
+Link {
+    padding-left: 2rem;
+    padding-right: 1rem;
+}
+
+span {
+    padding-right: 1rem;
+}
+
+a {
+    padding-left: 1rem;
+}
