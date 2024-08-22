@@ -27,7 +27,7 @@ const Itempage=()=>{
                {
                item && item.map && item.map((item) => (
                      <Item key={item.product_id} product_id={item.product_id} title={item.title} description={item.description} price={item.price} category={item.category.name} cart_id={cart_id}/>
-               ))
+                    ))
                }
             </Row>
          </Container>

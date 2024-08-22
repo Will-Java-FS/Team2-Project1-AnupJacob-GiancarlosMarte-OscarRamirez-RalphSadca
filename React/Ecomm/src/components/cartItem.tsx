@@ -3,12 +3,17 @@ import CloseButton from 'react-bootstrap/CloseButton';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 import axios from 'axios';
+import { useState, useEffect } from 'react';
 
-export default function CartItem(props: {cart_item_id:number, title:string, price:number, quantity:number, image_url:string, deleteCartItem:Function} ) {
+export default function CartItem(props: {cart_item_id:number, title:string, price:number, quantity:number, image_url:string, deleteCartItem:Function, returnPrice:Function} ) {
 
     function handleRemoveCartItem() {
-        props.deleteCartItem(props.cart_item_id);
+        props.deleteCartItem(props.cart_item_id, (props.price*props.quantity));
     }
+
+    useEffect(()=>{
+        props.returnPrice(props.price*props.quantity)
+     },[])
 
     return (
         <>
