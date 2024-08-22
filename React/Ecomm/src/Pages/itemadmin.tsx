@@ -14,7 +14,7 @@ const Itemadminpage = () => {
   const deleteTitleinput = useRef<HTMLInputElement>(null); 
   const nameinput = useRef<HTMLInputElement>(null);
   //const imginput = useRef<HTMLInputElement>(null); 
-
+  const cart_id = Number(localStorage.getItem("user_id"));
 
   const [items, setItems] = useState<any[]>([]); 
   const [loading, setLoading] = useState<boolean>(false);
@@ -134,6 +134,7 @@ const Itemadminpage = () => {
               description={item.description}
               price={item.price}
               category={item.category.name}
+              cart_id={cart_id}
               index={0} // Update the index as needed
             />
           ))}

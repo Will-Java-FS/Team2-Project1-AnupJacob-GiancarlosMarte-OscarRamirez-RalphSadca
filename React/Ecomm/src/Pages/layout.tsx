@@ -37,8 +37,8 @@ const Layout = () => {
 
                         </ul>
                     </div>
-                               <span className="navbar-text"> <Link className="nav-link" to="/profile">Profile</Link> </span>
-                               <span className="navbar-text"> <Link className="nav-link" to="/logout">Log out</Link> </span>
+                    <span className="navbar-text"> <Link className="nav-link" to="/profile">Profile</Link> </span>
+                    <span className="navbar-text"> <Link className="nav-link" to="/">Log out</Link> </span>
 
                 </nav>
             </div>

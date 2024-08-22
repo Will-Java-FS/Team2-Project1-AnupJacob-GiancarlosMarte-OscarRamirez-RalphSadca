@@ -14,6 +14,7 @@ const CartPage = () => {
     
     const [cartItems, setCartItems] = useState('');
     const [totalPrice, setTotalPrice] = useState(0);
+    const [discountCode, setDiscountCode] = useState<string>('');
     const user_id = Number(localStorage.getItem("user_id"));
     const getCartItems = async () => {
         const response = await axios.get(`http://localhost:8080/get-cart-items/${user_id}`);
@@ -33,6 +34,11 @@ const CartPage = () => {
         console.error(error);
         });
     }
+    function returnPricedis(){
+        if(discountCode=="SAVE"){
+        setTotalPrice((prevTotalPrice => (prevTotalPrice * .9)));
+        }
+    }
 
     function returnPrice(price:number){
         setTotalPrice((prevTotalPrice => (prevTotalPrice + price)));
@@ -49,17 +55,17 @@ const CartPage = () => {
                 <Row>
                     {
                     cartItems && cartItems.map && cartItems.map((cartItems) => (
-                    <CartItem key={cartItems.cart_item_id} cart_item_id={cartItems.cart_item_id} title={cartItems.product.title} price={cartItems.product.price} quantity={cartItems.quantity} image_url={cartItems.image_url} deleteCartItem={deleteCartItem} returnPrice={returnPrice}/>
+                    <CartItem key={cartItems.cart_item_id} cart_item_id={cartItems.cart_item_id} title={cartItems.product.title} description={cartItems.product.description} price={cartItems.product.price} quantity={cartItems.quantity} image_url={cartItems.image_url} deleteCartItem={deleteCartItem} returnPrice={returnPrice}/>
                 ))
                     }
                 </Row>
             </Col>
             <Row>
-                <InputGroup className="mb-3" style={{width:'92rem', paddingTop:'1rem'}}>
-                <Form.Control placeholder="Enter Discount Code Here" aria-label="Enter Discount Code Here"aria-describedby="basic-addon2"/>
-                <Button variant="outline-secondary" id="button-addon2">Apply</Button>
+                <InputGroup className="mb-3" style={{width:'50rem', paddingTop:'1rem'}}>
+                <Form.Control placeholder="Enter Discount Code Here" aria-label="Enter Discount Code Here"aria-describedby="basic-addon2" value={discountCode} onChange={e => setDiscountCode(e.target.value)}/>
+                <Button variant="outline-secondary" onClick={returnPricedis} id="button-addon2">Apply</Button>
                 </InputGroup>
-                <button style={{width:'92rem'}}>Total Price: {(((totalPrice)/2).toFixed(2))}, Proceed?</button> 
+                <button style={{width:'30rem'}}>Total Price: {(((totalPrice)/2).toFixed(2))}, Proceed?</button> 
             </Row>
         </Container>
         </>
