@@ -13,4 +13,5 @@ public interface CartRepo extends JpaRepository<Cart, Integer>{
         nativeQuery = true)
     Cart getCartByUserId(@Param("user_id") int userId);
 
+
 }

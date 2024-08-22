@@ -42,7 +42,7 @@ public class OrderController {
         return orders == null ? new ResponseEntity<>(null, HttpStatus.BAD_REQUEST) : new ResponseEntity<>(orders, HttpStatus.OK);
     }
 
-    @RequestMapping(method=RequestMethod.GET, value="orders/{user_id}")
+    @RequestMapping(method=RequestMethod.GET, value="/orders/{user_id}")
     public List<Order> getAllUserOrders(@PathVariable int user_id){
         return os.getAllUserOrders(user_id);
     }

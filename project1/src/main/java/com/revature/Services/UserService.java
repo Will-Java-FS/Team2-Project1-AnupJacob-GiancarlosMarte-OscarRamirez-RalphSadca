@@ -18,12 +18,12 @@ import java.util.Optional;
 public class UserService{
 
     UserRepo ur;
-    CartRepo cr;
+
 
     @Autowired
-    public UserService(UserRepo ur, CartRepo cr) {
+    public UserService(UserRepo ur) {
         this.ur = ur;
-        this.cr = cr;
+
     }
 
     public List<User> findAll() {
@@ -51,8 +51,7 @@ public class UserService{
             return null;
         }
         User userToAdd = ur.save(user);
-        Cart cart = cr.save(userToAdd.getCart());
-        userToAdd.setCart(cart);
+
         return userToAdd;
     }
 
@@ -67,14 +66,14 @@ public class UserService{
         return ur.findByEmailAndPassword(email, password).orElse(null);
     }
 
-    public void deleteById(int userId) {
-        User user = ur.findById(userId).orElse(null);
-        if (user != null) {
-            cr.deleteById(user.getCart().getCart_id());
-            ur.deleteById(userId);
-        }
-    }
-
+//    public void deleteById(int userId) {
+//        User user = ur.findById(userId).orElse(null);
+//        if (user != null) {
+//            cr.deleteById(user.getCart().getCart_id());
+//            ur.deleteById(userId);
+//        }
+//    }
+//
 
 
 //    @Override
