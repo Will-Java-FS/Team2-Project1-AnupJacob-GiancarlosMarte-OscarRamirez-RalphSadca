@@ -20,6 +20,9 @@ const Layoutadmin = () =>{
                 <li>
                     <Link to="/admin/contact">Contact Us</Link>
                 </li>
+                <li>
+                    <Link to="/">Log Out</Link>
+                </li>
             </ul>
         </nav>
         <Outlet/>

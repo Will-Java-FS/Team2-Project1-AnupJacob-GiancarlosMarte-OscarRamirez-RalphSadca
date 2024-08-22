@@ -59,9 +59,10 @@ export default function Register() {
                 role
                 
             });
+            
             navigate("/main");
          } catch (error) {
-             navigate("/login");
+             //navigate("/login");
              console.error(error.response.data);
              //setError("An error occurred during registration.");
          }
