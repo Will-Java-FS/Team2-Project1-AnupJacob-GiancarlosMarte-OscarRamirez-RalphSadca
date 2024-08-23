@@ -1,21 +1,21 @@
-nav > ul {
+.navbar-nav {
     display: flex;
     justify-content: space-between;
 }
 
-nav > li {
+.nav-item{
     list-style: none;
 }
 
-Link {
+.nav-link {
     padding-left: 2rem;
     padding-right: 1rem;
 }
 
-span {
+.toggler-span {
     padding-right: 1rem;
 }
 
-a {
-    padding-left: 1rem;
+.ecom-brand {
+    padding-left: 2rem;
 }

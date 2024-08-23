@@ -1,21 +1,21 @@
-nav > ul {
+/* #nav > ul {
     display: flex;
     justify-content: space-between;
 }
 
-nav > li {
+#nav > li {
     list-style: none;
 }
 
-Link {
+#nav > Link {
     padding-left: 2rem;
     padding-right: 1rem;
 }
 
-span {
+#nav > span {
     padding-right: 1rem;
 }
 
-a {
+#nav > a {
     padding-left: 1rem;
-}
+} */

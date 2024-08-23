@@ -5,18 +5,19 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { Button } from 'react-bootstrap';
+import "../styles/item-admin-comp.css";
 
 const Itemadminpage = () => {
   const titleinput = useRef<HTMLInputElement>(null);
   const descriptioninput = useRef<HTMLInputElement>(null);
   const priceinput = useRef<HTMLInputElement>(null);
   const category_idinput = useRef<HTMLInputElement>(null);
-  const deleteTitleinput = useRef<HTMLInputElement>(null); 
+  const deleteTitleinput = useRef<HTMLInputElement>(null);
   const nameinput = useRef<HTMLInputElement>(null);
   //const imginput = useRef<HTMLInputElement>(null); 
   const cart_id = Number(localStorage.getItem("user_id"));
 
-  const [items, setItems] = useState<any[]>([]); 
+  const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -35,7 +36,7 @@ const Itemadminpage = () => {
       setLoading(false);
     }
   };
-  
+
   const clearInputs = () => {
     if (titleinput.current) titleinput.current.value = '';
     if (descriptioninput.current) descriptioninput.current.value = '';
@@ -51,7 +52,7 @@ const Itemadminpage = () => {
     const description = descriptioninput.current.value;
     const price = parseFloat(priceinput.current.value);
     const category_id = parseInt(category_idinput.current.value);
-    
+
 
     const addItemUrl = "http://localhost:8080/add-new-product";
 
@@ -61,12 +62,12 @@ const Itemadminpage = () => {
         description,
         price,
         category_id
-        
-        
+
+
       });
       alert('Item added successfully!');
       fetchItems();
-      clearInputs(); 
+      clearInputs();
     } catch (err) {
       console.error('Error adding item:', err);
       alert('An error occurred while adding the item.');
@@ -100,14 +101,14 @@ const Itemadminpage = () => {
     if (!nameinput.current) return;
 
     const name = nameinput.current.value;
-    const image_url:string="https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1356&h=668&fit=crop";
+    const image_url: string = "https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-4.1.0&q=45&auto=format&w=1356&h=668&fit=crop";
 
     const addCategoryUrl = "http://localhost:8080/category";
 
     try {
-      await axios.post(addCategoryUrl, { name , image_url});
+      await axios.post(addCategoryUrl, { name, image_url });
       alert('Category added successfully!');
-       // Refresh the category list
+      // Refresh the category list
       clearInputs(); // Clear inputs after adding
     } catch (err) {
       console.error('Error adding category:', err);
@@ -140,39 +141,55 @@ const Itemadminpage = () => {
           ))}
         </Row>
       </Container>
-      
-      <div>
-        <label>Title to Delete:</label>
-        <input ref={deleteTitleinput} type="text" />
-        <Button variant="danger" onClick={deleteItemByTitle}>Delete Item by Title</Button>
+      <div className="container">
+        <br />
+        <br />
+        <table>
+          <tr>
+            <td><label>Title to Delete:</label></td>
+            <td><input ref={deleteTitleinput} type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><Button className="delete-btn" variant="danger" onClick={deleteItemByTitle}>Delete Item by Title</Button></td>
+            <td></td>
+          </tr>
+          <br />
+          <br />
+
+
+          <tr>
+            <td><label>Title:</label></td>
+            <td><input ref={titleinput} type="text" /></td>
+          </tr>
+          <tr>
+            <td><label>Description:</label></td>
+            <td><input ref={descriptioninput} type="text" /></td>
+          </tr>
+          <tr>
+            <td><label>Price:</label></td>
+            <td><input ref={priceinput} type="number" step="0.01" /></td>
+          </tr>
+          <tr>
+            <td><label>Category ID:</label></td>
+            <td><input ref={category_idinput} type="number" /></td>
+          </tr>
+          <td></td>
+          <td><Button className="add-comp-item" variant="primary" onClick={addItem}>Add Item</Button></td>
+
+          <br />
+          <br />
+          <br />
+          <tr>
+            <td><label>Name:</label></td>
+            <td><input ref={nameinput} type="text" /></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><Button onClick={addCategory}> Add Category </Button></td>
+          </tr>
+        </table>
       </div>
-          <br>
-          
-          </br>
-      <div>
-        <label>Title:</label>
-        <input ref={titleinput} type="text" />
-      </div>
-      <div>
-        <label>Description:</label>
-        <input ref={descriptioninput} type="text" />
-      </div>
-      <div>
-        <label>Price:</label>
-        <input ref={priceinput} type="number" step="0.01" />
-      </div>
-      <div>
-        <label>Category ID:</label>
-        <input ref={category_idinput} type="number" />
-      </div>
-      <Button variant="primary" onClick={addItem}>Add Item</Button>
-      <br></br>
-      <br></br>
-      <div>
-        <label>Name:</label>
-        <input ref={nameinput} type="text" />
-      </div>
-      <Button onClick={addCategory}> Add Category </Button>
     </>
   );
 };

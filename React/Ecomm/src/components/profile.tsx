@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../styles/profile-comp.css";
 
 export default function Profile() {
     const [userData, setUserData] = useState<{ email: string; username: string; firstName:string;lastName:string} | null>(null);
@@ -44,13 +45,13 @@ export default function Profile() {
 
     return (
         <div>
-            <h2>User Profile</h2>
+            <h2 className="user-h2">User Profile</h2>
             {userData ? (
-                <ul>
-                    <li><strong>Username:</strong> {userData.username}</li>
-                    <li><strong>Email:</strong> {userData.email}</li>
-                    <li><strong>First Name:</strong> {userData.firstName}</li>
-                    <li><strong>Last Name:</strong> {userData.lastName}</li>
+                <ul className="user-ul">
+                    <li className="user-item"><strong>Username:</strong> {userData.username}</li>
+                    <li className="user-item"><strong>Email:</strong> {userData.email}</li>
+                    <li className="user-item"><strong>First Name:</strong> {userData.firstName}</li>
+                    <li className="user-item"><strong>Last Name:</strong> {userData.lastName}</li>
                 </ul>
             ) : (
                 <p>No user data available.</p>

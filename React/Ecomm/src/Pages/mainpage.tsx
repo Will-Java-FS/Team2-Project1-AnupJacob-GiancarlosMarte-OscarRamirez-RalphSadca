@@ -1,5 +1,5 @@
 import { Main } from "../components/maincomp"
-import { Test } from "../components/test"
+// import { Test } from "../components/test"
 
 const MainPage = () => {
     return(
